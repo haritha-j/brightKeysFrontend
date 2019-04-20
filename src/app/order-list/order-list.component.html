@@ -1,0 +1,42 @@
+
+
+<table>
+
+  <tbody>
+    <tr *ngFor="let user of users">
+        <h2>{{ user.payload.doc.data().childName }}'s score</h2>
+      <table>
+          <tr>
+              <th>Date</th>
+              <td *ngFor="let date of user.payload.doc.data().dates">
+                {{ date }}
+              </td>
+            </tr>
+            <tr>
+                <th>Score</th>
+                <td *ngFor="let value of user.payload.doc.data().values">
+
+                  {{ value}}
+                </td>
+              </tr>
+      </table>     
+    </tr>
+  </tbody>
+</table>
+
+
+<h5>A value above 50 indicates poossibility of depression.</h5>
+<ul>
+  <li></li>
+</ul>
+<div>
+    <div style="display: block">
+      <canvas baseChart
+              [datasets]="barChartData"
+              [labels]="barChartLabels"
+              [options]="barChartOptions"
+              [legend]="barChartLegend"
+              [chartType]="barChartType">
+      </canvas>
+    </div>
+  </div>
