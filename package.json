@@ -35,13 +35,9 @@
     "zone.js": "~0.8.26"
   },
   "devDependencies": {
-<<<<<<< HEAD
-    
-=======
     "@angular-devkit/build-angular": "^0.11.4",
     "@angular/cli": "^7.3.8",
     "@angular/compiler-cli": "^7.1.4",
->>>>>>> ae1d0851a9b77699adb924ac0a2529e3907b1cc9
     "@angular/language-service": "~7.1.0",
     "@types/jasmine": "~2.8.8",
     "@types/jasminewd2": "~2.0.3",
