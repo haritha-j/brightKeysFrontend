@@ -1,7 +1,7 @@
 export const environment = {
   production: true,
   firebaseConfig: {
-    apiKey: 'AIzaSyC1ONYwXnlDRf8_yhbIO1RXyjYs2SKGceg',
+    apiKey: '#',
     authDomain: 'brightkeys-254ba.firebaseapp.com',
     databaseURL: 'https://brightkeys-254ba.firebaseio.com',
     projectId: 'brightkeys-254ba',
