@@ -15,10 +15,24 @@ export class OrderListComponent implements OnInit {
     scaleShowVerticalLines: false,
     responsive: true
   };
+  public options = {
+    scales :{
+     
+yAxes: [{
+  display: true,
+  ticks: {
+      beginAtZero: true,
+      steps:6,
+      max:60
+  }
+}]
+    }
+  }
   public barChartLabels = [];
   public barChartType = 'bar';
   public barChartLegend = false;
-  public barChartData = [{data:[], label:"score"}];
+  public barChartData = [{data:[], label:"score"}]
+  ;
 
   users;
   
@@ -40,9 +54,7 @@ export class OrderListComponent implements OnInit {
         var currentYear = dataObject[0].date.toDate().getYear();
         var currentScore = 0;
         var scoreCount = 0;
-        console.log(currentDate)
-        console.log(currentMonth)
-        console.log(currentYear)
+
         for (var i = 0; i< dataObject.length; i++){
           if (dataObject[i].date.toDate().getDate() == currentDate && dataObject[i].date.toDate().getMonth() == currentMonth && dataObject[i].date.toDate().getYear() == currentYear){
             currentScore = (currentScore*scoreCount + parseFloat(dataObject[i].score))/(scoreCount+1);
@@ -54,10 +66,10 @@ export class OrderListComponent implements OnInit {
             this.barChartLabels.push(currentDate);
             scoreCount =1;
             currentScore = parseFloat(dataObject[i].score);
-            console.log(currentScore);
+
           }
         }
-        console.log(currentScore);
+
         this.barChartData[0].data.push(currentScore*100);
         this.barChartLabels.push(currentDate.toString()+"/" + (currentMonth+1).toString());
         
