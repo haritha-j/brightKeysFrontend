@@ -15,14 +15,13 @@ export class OrderListComponent implements OnInit {
     scaleShowVerticalLines: false,
     responsive: true
   };
-  public barChartLabels = ['2006', '2007', '2008', '2009', '2010', '2011', '2012'];
+  public barChartLabels = [];
   public barChartType = 'bar';
   public barChartLegend = false;
-  public barChartData = [
-
-  ];
+  public barChartData = [{data:[], label:"score"}];
 
   users;
+  
   ngOnInit() {
     this.getUsers();
   
@@ -35,9 +34,33 @@ export class OrderListComponent implements OnInit {
       .getUsers()
       .subscribe(res => {
         this.users = res; 
-        console.log(this.users[0].payload.doc.data().dates);
-        this.barChartLabels = this.users[0].payload.doc.data().dates
-        this.barChartData = [{data: this.users[0].payload.doc.data().values, label: "score"}]
+        var dataObject = this.users[0].payload.doc.data().depression_score;
+        var currentDate = dataObject[0].date.toDate().getDate();
+        var currentMonth = dataObject[0].date.toDate().getMonth();
+        var currentYear = dataObject[0].date.toDate().getYear();
+        var currentScore = 0;
+        var scoreCount = 0;
+        console.log(currentDate)
+        console.log(currentMonth)
+        console.log(currentYear)
+        for (var i = 0; i< dataObject.length; i++){
+          if (dataObject[i].date.toDate().getDate() == currentDate && dataObject[i].date.toDate().getMonth() == currentMonth && dataObject[i].date.toDate().getYear() == currentYear){
+            currentScore = (currentScore*scoreCount + parseFloat(dataObject[i].score))/(scoreCount+1);
+            scoreCount++;
+          
+          }
+          else{
+            this.barChartData[0].data.push(currentScore*100);
+            this.barChartLabels.push(currentDate);
+            scoreCount =1;
+            currentScore = parseFloat(dataObject[i].score);
+            console.log(currentScore);
+          }
+        }
+        console.log(currentScore);
+        this.barChartData[0].data.push(currentScore*100);
+        this.barChartLabels.push(currentDate.toString()+"/" + (currentMonth+1).toString());
+        
       });
 
 

@@ -33,7 +33,7 @@ export class OrdersService {
   }
 
   getUsers() {
-    return this.firestore.collection("users").snapshotChanges();
+    return this.firestore.collection("user_depression_score").snapshotChanges();
   }
 
   deleteCoffeeOrder(data) {

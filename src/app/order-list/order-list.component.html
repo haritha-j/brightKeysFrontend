@@ -4,17 +4,17 @@
 
   <tbody>
     <tr *ngFor="let user of users">
-        <h2>{{ user.payload.doc.data().childName }}'s score</h2>
+        <h2>{{ user.payload.doc.data().child_name }}'s score</h2>
       <table>
           <tr>
               <th>Date</th>
-              <td *ngFor="let date of user.payload.doc.data().dates">
+              <td *ngFor="let date of barChartData[0].data">
                 {{ date }}
               </td>
             </tr>
             <tr>
                 <th>Score</th>
-                <td *ngFor="let value of user.payload.doc.data().values">
+                <td *ngFor="let value of barChartLabels">
 
                   {{ value}}
                 </td>
@@ -25,7 +25,7 @@
 </table>
 
 
-<h5>A value above 50 indicates a possibility of depression.</h5>
+<h5>A value above 40 indicates a possibility of depression.</h5>
 <ul>
   <li></li>
 </ul>
